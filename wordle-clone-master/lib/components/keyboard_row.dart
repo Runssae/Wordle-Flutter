@@ -43,11 +43,11 @@ class KeyboardRow extends StatelessWidget {
                 }
 
                 return Padding(
-                    padding: EdgeInsets.all(size.width * 0.006),
+                    padding: EdgeInsets.all(size.width * 0.007),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
                         child: SizedBox(
-                          width: e.key == 'ENTER' || e.key == 'BACK'
+                          width: e.key == 'ENTER'
                               ? size.width * 0.13
                               : size.width * 0.085,
                           height: size.height * 0.090,
