@@ -11,24 +11,30 @@ class StatsBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
     final size = MediaQuery.of(context).size;
+
+    // Build the statistics box layout
     return AlertDialog(
       insetPadding: EdgeInsets.fromLTRB(size.width * 0.08, size.height * 0.12,
           size.width * 0.08, size.height * 0.12),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Close button
           IconButton(
               alignment: Alignment.centerRight,
               onPressed: () {
                 Navigator.maybePop(context);
               },
               icon: const Icon(Icons.clear)),
+          // Title
           const Expanded(
               child: Text(
             'STATISTICS',
             textAlign: TextAlign.center,
           )),
+          // Statistics tiles
           Expanded(
             flex: 2,
             child: FutureBuilder(
@@ -55,10 +61,12 @@ class StatsBox extends StatelessWidget {
               },
             ),
           ),
+          // Statistics chart
           const Expanded(
             flex: 8,
             child: StatsChart(),
           ),
+          // Replay button
           Expanded(
               flex: 2,
               child: ElevatedButton(
@@ -66,9 +74,11 @@ class StatsBox extends StatelessWidget {
                     primary: Colors.green,
                   ),
                   onPressed: () {
+                    // Reset answer stages
                     keysMap.updateAll(
                         (key, value) => value = AnswerStage.notAnswered);
 
+                    // Navigate back to home screen
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => const MyApp()),

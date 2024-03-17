@@ -1,5 +1,6 @@
 import 'package:wordle_clone/constants/answer_stages.dart';
 
+// Map to store the answer stages for each letter key
 Map<String, AnswerStage> keysMap = {
   'Q': AnswerStage.notAnswered,
   'W': AnswerStage.notAnswered,

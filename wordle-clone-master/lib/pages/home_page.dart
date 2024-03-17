@@ -10,6 +10,7 @@ import '../components/stats_box.dart';
 import '../constants/words.dart';
 import '../providers/controller.dart';
 
+// Main screen of the Wordle game
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -17,9 +18,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// State for HomePage, managing game data
 class _HomePageState extends State<HomePage> {
-  late String _word;
+  late String _word; // Variable to store the secret word for the game
 
+  // Code that runs when the screen is first created
   @override
   void initState() {
     final r = Random().nextInt(words.length);
@@ -33,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  // Builds the layout of the screen
   @override
   Widget build(BuildContext context) {
     return Scaffold(

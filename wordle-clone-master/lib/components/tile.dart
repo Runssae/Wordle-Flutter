@@ -28,6 +28,7 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    // Initialize animation controller
     _animationController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
 
@@ -36,12 +37,14 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
 
   @override
   void didChangeDependencies() {
+    // Update border color based on theme
     _borderColor = Theme.of(context).primaryColorLight;
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
+    // Dispose animation controller
     _animationController.dispose();
     super.dispose();
   }
@@ -55,6 +58,7 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
         text = notifier.tilesEntered[widget.index].letter;
         _answerStage = notifier.tilesEntered[widget.index].answerStage;
         if (notifier.checkLine) {
+          // Animate tile when checking line
           final delay = widget.index - (notifier.currentRow - 1) * 5;
           Future.delayed(Duration(milliseconds: 300 * delay), () {
             if (mounted) {
@@ -63,6 +67,7 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
             notifier.checkLine = false;
           });
 
+          // Determine background color based on answer stage
           _backgroundColor = Theme.of(context).primaryColorLight;
           if (_answerStage == AnswerStage.correct) {
             _backgroundColor = correctGreen;

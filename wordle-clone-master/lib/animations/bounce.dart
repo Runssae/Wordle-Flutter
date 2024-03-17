@@ -17,6 +17,7 @@ class _BounceState extends State<Bounce> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    // Initialize animation controller and animation
     _animationController = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this);
 
@@ -31,12 +32,14 @@ class _BounceState extends State<Bounce> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
+    // Dispose animation controller
     _animationController.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant Bounce oldWidget) {
+    // Trigger animation when widget is updated
     if (widget.animate) {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
         if (mounted) {
@@ -50,6 +53,7 @@ class _BounceState extends State<Bounce> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Apply bounce animation to the child widget
     return ScaleTransition(
       scale: _animation,
       child: widget.child,

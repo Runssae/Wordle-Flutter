@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:wordle_clone/providers/theme_provider.dart';
-import 'package:wordle_clone/utils/theme_preferences.dart';
+import 'package:flutter/material.dart'; // Imports Flutter for building UI
+import 'package:provider/provider.dart'; // Manages app state with Provider
+import 'package:wordle_clone/providers/theme_provider.dart'; // Handles theme changes
+import 'package:wordle_clone/utils/theme_preferences.dart'; // Loads saved theme preference
 
-import 'constants/themes.dart';
-import 'providers/controller.dart';
-import 'pages/home_page.dart';
+import 'constants/themes.dart'; // Stores light and dark theme definitions
+import 'providers/controller.dart'; // Provides app-wide functionality (replace with actual functionality)
+import 'pages/home_page.dart'; // The main screen of the app
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp()); // Starts the app with MyApp widget
 }
 
 class MyApp extends StatelessWidget {
@@ -18,25 +18,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => Controller()),
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(
+            create: (_) => Controller()), // Provides app controller
+        ChangeNotifierProvider(
+            create: (_) => ThemeProvider()), // Provides theme management
       ],
       child: FutureBuilder(
         initialData: false,
-        future: ThemePreferences.getTheme(),
+        future: ThemePreferences.getTheme(), // Loads preferred theme
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-              Provider.of<ThemeProvider>(context, listen: false)
-                  .setTheme(turnOn: snapshot.data as bool);
-            });
+            // Set theme based on saved preference after the first frame renders
+            WidgetsBinding.instance?.addPostFrameCallback((timeStamp) =>
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .setTheme(turnOn: snapshot.data as bool));
           }
           return Consumer<ThemeProvider>(
             builder: (_, notifier, __) => MaterialApp(
-              debugShowCheckedModeBanner: false,
+              debugShowCheckedModeBanner: false, // Hides debug banner
               title: 'Wordle Clone',
-              theme: notifier.isDark ? darkTheme : lightTheme,
-              home: const Material(child: HomePage()),
+              theme: notifier.isDark ? darkTheme : lightTheme, // Applies theme
+              home: const Material(child: HomePage()), // Sets home screen
             ),
           );
         },

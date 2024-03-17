@@ -12,9 +12,11 @@ class StatsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Build a statistics tile with a heading and value
     return Expanded(
       child: Column(
         children: [
+          // Display the value with fitted text
           Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
@@ -31,6 +33,7 @@ class StatsTile extends StatelessWidget {
               ),
             ),
           ),
+          // Display the heading with fitted text
           Expanded(
             child: FittedBox(
               alignment: const Alignment(0, -1),

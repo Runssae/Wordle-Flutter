@@ -23,6 +23,7 @@ class _GridState extends State<Grid> {
 
   @override
   Widget build(BuildContext context) {
+    // Return a grid view with tiles
     return GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(36, 20, 36, 20),
@@ -33,6 +34,7 @@ class _GridState extends State<Grid> {
           crossAxisCount: 5,
         ),
         itemBuilder: (context, index) {
+          // Build each tile with animation
           return Consumer<Controller>(
             builder: (_, notifier, __) {
               bool animate = false;
@@ -52,6 +54,7 @@ class _GridState extends State<Grid> {
                   }
                 }
               }
+              // Apply dance and bounce animation to tiles
               return Dance(
                 delay: danceDelay,
                 animate: animateDance,

@@ -17,20 +17,24 @@ class KeyboardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
     final size = MediaQuery.of(context).size;
 
     return Consumer<Controller>(
       builder: (_, notifier, __) {
         int index = 0;
+        // Build the keyboard row based on provided min and max index
         return IgnorePointer(
           ignoring: notifier.gameCompleted,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: keysMap.entries.map((e) {
               index++;
+              // Check if the current index is within the specified range
               if (index >= min && index <= max) {
                 Color color = Theme.of(context).primaryColorLight;
                 Color keyColor = Colors.white;
+                // Set colors based on answer stage
                 if (e.value == AnswerStage.correct) {
                   color = correctGreen;
                 } else if (e.value == AnswerStage.contains) {
@@ -42,6 +46,7 @@ class KeyboardRow extends StatelessWidget {
                       Colors.black;
                 }
 
+                // Build the key widget
                 return Padding(
                     padding: EdgeInsets.all(size.width * 0.007),
                     child: ClipRRect(

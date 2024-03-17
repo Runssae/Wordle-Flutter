@@ -22,6 +22,7 @@ class _DanceState extends State<Dance> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
+    // Initialize animation controller and animation
     _controller = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
 
@@ -46,12 +47,14 @@ class _DanceState extends State<Dance> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
+    // Dispose animation controller
     _controller.dispose();
     super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant Dance oldWidget) {
+    // Trigger animation when widget is updated
     if (widget.animate) {
       Future.delayed(Duration(milliseconds: widget.delay), () {
         if (mounted) {
@@ -64,6 +67,7 @@ class _DanceState extends State<Dance> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Apply slide animation to the child widget
     return SlideTransition(
       position: _animation,
       child: widget.child,

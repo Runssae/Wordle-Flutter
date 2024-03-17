@@ -14,6 +14,7 @@ class StatsChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Build the statistics chart
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
       child: FutureBuilder(
@@ -21,7 +22,9 @@ class StatsChart extends StatelessWidget {
         builder: (context, snapshot) {
           final List<charts.Series<ChartModel, String>> series;
           if (snapshot.hasData) {
+            // Extract the series data
             series = snapshot.data as List<charts.Series<ChartModel, String>>;
+            // Build the chart based on the selected theme
             return Consumer<ThemeProvider>(
               builder: (_, notifier, __) {
                 var color;
@@ -30,6 +33,7 @@ class StatsChart extends StatelessWidget {
                 } else {
                   color = charts.MaterialPalette.black;
                 }
+                // Create the bar chart
                 return charts.BarChart(
                   series,
                   vertical: false,

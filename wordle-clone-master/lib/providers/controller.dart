@@ -7,7 +7,9 @@ import 'package:wordle_clone/utils/calculate_chart_stats.dart';
 import '../utils/calculate_stats.dart';
 import '../data/keys_map.dart';
 
+// Class to manage game logic and state
 class Controller extends ChangeNotifier {
+  // Variables to track game state
   bool checkLine = false,
       backOrEnterTapped = false,
       gameWon = false,
@@ -17,8 +19,10 @@ class Controller extends ChangeNotifier {
   int currentTile = 0, currentRow = 0;
   List<TileModel> tilesEntered = [];
 
+  // Method to set the correct word
   setCorrectWord({required String word}) => correctWord = word;
 
+  // Method to handle key taps
   setKeyTapped({required String value}) {
     if (value == 'ENTER') {
       backOrEnterTapped = true;
@@ -46,6 +50,7 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Method to check the guessed word against the correct word
   checkWord() {
     List<String> guessed = [], remainingCorrect = [];
     String guessedWord = "";
