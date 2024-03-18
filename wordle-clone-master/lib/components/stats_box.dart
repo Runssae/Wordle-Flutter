@@ -71,7 +71,7 @@ class StatsBox extends StatelessWidget {
               flex: 2,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                   ),
                   onPressed: () {
                     // Reset answer stages

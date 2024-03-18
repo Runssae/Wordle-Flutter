@@ -1,0 +1,1 @@
+ D:\\wordle-clone-master\\.dart_tool\\flutter_build\\4a764d03eeed3a5b1d77a83740fad3e2\\native_assets.yaml: 
